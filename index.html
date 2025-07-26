@@ -50,11 +50,242 @@
     .page-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-primary); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; will-change: opacity; }
     .loader-spinner { width: 60px; height: 60px; border: 3px solid var(--bg-tertiary); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s ease-in-out infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .nav-container { position: fixed; top: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; transition: var(--transition-base); padding-left: var(--safe-area-inset-left); padding-right: var(--safe-area-inset-right); }
-    .nav-content { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-    .nav-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--gradient-accent); color: var(--text-primary); text-decoration: none; border-radius: 50px; font-weight: 600; transition: var(--transition-base); box-shadow: 0 4px 15px var(--accent-glow); min-height: 44px; touch-action: manipulation; }
-    .nav-cta:hover, .nav-cta:active { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
+    /* ===== Unified Header Styles ===== */
+    .unified-header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    
+    /* Logo Styles */
+    .header-logo {
+      flex-shrink: 0;
+    }
+    
+    .logo-link {
+      font-size: 24px;
+      font-weight: 600;
+      color: #0066ff;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .logo-link:hover {
+      opacity: 0.8;
+    }
+    
+    /* Navigation Styles */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      justify-content: center;
+      margin: 0 40px;
+    }
+    
+    .header-nav .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .header-nav .nav-link {
+      color: #333333;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 5px 0;
+      position: relative;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .header-nav .nav-link:hover {
+      color: #0066ff;
+    }
+    
+    .header-nav .nav-link.active {
+      color: #0066ff;
+      font-weight: 500;
+    }
+    
+    .header-nav .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #0066ff;
+    }
+    
+    /* Phone Button Styles */
+    .header-cta {
+      flex-shrink: 0;
+    }
+    
+    .phone-button {
+      background-color: #0066ff;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .phone-button:hover {
+      background-color: #0052cc;
+      transform: translateY(-1px);
+    }
+    
+    .phone-icon {
+      font-size: 18px;
+    }
+    
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+    
+    .mobile-menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #333333;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    
+    /* Mobile Menu Styles */
+    @media (max-width: 900px) {
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        z-index: 1000;
+      }
+      
+      .header-nav.active {
+        display: block;
+      }
+      
+      .header-nav .nav-menu {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: #ffffff;
+        width: 100%;
+      }
+      
+      .header-nav .nav-menu li {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      
+      .header-nav .nav-link {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.3s ease;
+      }
+      
+      .header-nav .nav-link:hover {
+        background-color: #f5f5f5;
+        color: #0066ff;
+      }
+      
+      .header-nav .nav-link.active {
+        background-color: #e6f2ff;
+        color: #0066ff;
+        font-weight: 600;
+        border-left: 4px solid #0066ff;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        background-color: #0066ff;
+      }
+      
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+        background-color: #0066ff;
+      }
+    }
+    
+    /* Smaller mobile devices */
+    @media (max-width: 480px) {
+      .header-container {
+        height: 60px;
+        padding: 0 15px;
+      }
+      
+      .header-nav .nav-link {
+        padding: 15px 20px;
+        font-size: 15px;
+      }
+      
+      .phone-button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      
+      .phone-icon {
+        font-size: 14px;
+      }
+    }
     .mobile-call-button { display: none; position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: var(--gradient-accent); border-radius: 50%; box-shadow: 0 4px 15px var(--accent-glow); z-index: 998; align-items: center; justify-content: center; color: var(--text-primary); font-size: 24px; text-decoration: none; transition: var(--transition-base); }
     .mobile-call-button:active { transform: scale(0.95); }
     .hero { margin-top: 80px; padding: 4rem 2rem; background: var(--gradient-hero); position: relative; overflow: hidden; }
@@ -135,9 +366,6 @@
     .footer-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: var(--transition-base); padding: 0.5rem; min-height: 44px; display: inline-flex; align-items: center; }
     .footer-links a:hover, .footer-links a:active { color: white; }
     @media (max-width: 768px) {
-        .nav-content { padding: 0.75rem 1rem; }
-        .nav-logo { font-size: 1.125rem; }
-        .nav-cta { padding: 0.625rem 1.25rem; font-size: 0.875rem; display: none; }
         .hero { padding: 2rem 1rem; margin-top: 70px; }
         h1 { font-size: 2rem; }
         .hero-stats { flex-direction: column; gap: 1.5rem; }
@@ -160,18 +388,40 @@
 <img src="https://videos.openai.com/vg-assets/assets%2Ftask_01jzgt4w66ezmszr3aassa24ca%2F1751837296_img_1.webp?st=2025-07-06T19%3A36%3A46Z&se=2025-07-12T20%3A36%3A46Z&sks=b&skt=2025-07-06T19%3A36%3A46Z&ske=2025-07-12T20%3A36%3A46Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=MtsL%2B0tzOnFjHudwfzfkeIJotR4dBJVKI5LMSh8%2B7gY%3D&az=oaivgprodscus" width="1200" height="630" alt="An aerial shot of a North Carolina home protected by a glowing shield, symbolizing homeowners insurance savings." style="display:none;" />
 
 <!-- VISIBLE BLOG CONTENT STARTS HERE -->
-<nav class="nav-container">
-    <div class="nav-content">
-        <a href="https://billlayne.github.io/Bill-Layne-Insurance.gitbhub.io/" class="nav-logo">
-            <img src="https://i.imgur.com/cBAgeX8.png" alt="Bill Layne Insurance Logo" height="30" width="30">
-            Bill Layne Insurance
-        </a>
-        <a href="tel:336-835-1993" class="nav-cta">
-            <span style="font-size: 1.2em;">&#128222;</span>
-            <span>Get Savings Now</span>
-        </a>
+<!-- Unified Header -->
+<header class="unified-header">
+  <div class="header-container">
+    <div class="header-logo">
+      <a href="https://billlayneinsurance.com/" class="logo-link">
+        Bill Layne Insurance
+      </a>
     </div>
-</nav>
+    
+    <nav class="header-nav">
+      <ul class="nav-menu">
+        <li><a href="https://billlayne.github.io/Auto-Insurance-Center/" class="nav-link">Auto</a></li>
+        <li><a href="https://billlayne.github.io/NC-Home-Insurance.github.io/" class="nav-link">Home</a></li>
+        <li><a href="https://billlayneinsurance.com/areas-we-serve.html" class="nav-link">Services</a></li>
+        <li><a href="https://billlayne.github.io/NC-Insurance-Claims-Center.github.io/" class="nav-link">Claims</a></li>
+        <li><a href="https://billlayne.github.io/Resources/" class="nav-link">Resources</a></li>
+        <li><a href="https://billlayneinsurance.com/blog" class="nav-link">Blog</a></li>
+        <li><a href="https://billlayneinsurance.com/contact-us.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <div class="header-cta">
+      <a href="tel:3368351993" class="phone-button">
+        <span class="phone-icon">📞</span> (336) 835-1993
+      </a>
+    </div>
+    
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
 <a href="tel:336-835-1993" class="mobile-call-button" aria-label="Call Bill Layne Insurance">
     &#128222;
@@ -429,6 +679,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(loader.parentElement) loader.parentElement.removeChild(loader);
             }, 300);
         }, 300);
+    }
+    
+    // Mobile Menu JavaScript
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const headerNav = document.querySelector('.header-nav');
+
+    if (mobileMenuToggle && headerNav) {
+        // Simple toggle functionality
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            headerNav.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.header-container')) {
+                headerNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking on a nav link
+        const menuLinks = document.querySelectorAll('.header-nav .nav-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                headerNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
     }
     
     const faqQuestions = document.querySelectorAll('.faq-question');
